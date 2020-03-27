@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>布局</title>
+    <style>
+      /* 三栏布局 */
+      /* 公共样式 */
+      section {
+        position: relative;
+      }
+      .float-layout-container {
+        height: 240px;
+      }
+      .left {
+        background-color: bisque;
+      }
+      .right {
+        background-color: darkseagreen;
+      }
+      .center {
+        background-color: burlywood;
+      }
+      /* 1. float布局 */
+      .float .left {
+        float: left;
+        width: 200px;
+      }
+      .float .right {
+        float: right;
+        width: 200px;
+      }
+      .float .center {
+        overflow: hidden; /* 非必须 */
+        margin-left: 200px; /* 避免中间栏高度超出后向两边溢出 */
+        margin-right: 200px; /* 避免中间栏高度超出后向两边溢出 */
+      }
+      /* 2. 绝对定位布局 */
+      .absolute .left {
+        position: absolute;
+        left: 0;
+        width: 200px;
+      }
+      .absolute .right {
+        position: absolute;
+        right: 0;
+        width: 200px;
+      }
+      .absolute .center {
+        position: absolute;
+        left: 200px;
+        right: 200px;
+      }
+      /* 3. flex布局 */
+      .flex-layout {
+        display: flex;
+      }
+      .flex-layout .left {
+        width: 200px;
+      }
+      .flex-layout .center {
+        flex: 1;
+      }
+      .flex-layout .right {
+        width: 200px;
+      }
+      /* 4. grid布局 */
+      .grid-layout {
+        display: grid;
+        grid-template-columns: 200px auto 200px;
+      }
+      /* 5. table布局 */
+      .table-layout {
+        display: table;
+        width: 100%;
+      }
+      .table-layout .left {
+        display: table-cell;
+        width: 200px;
+      }
+      .table-layout .center {
+        display: table-cell;
+      }
+      .table-layout .right {
+        display: table-cell;
+        width: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <article>
+      <h2>三栏布局</h2>
+      <section>
+        <h3>1. float布局</h3>
+        <h4>注意事项</h4>
+        <ul>
+          <li>中间栏必须放在最后面，防止其占据文档流，将右浮动元素挤下去</li>
+          <li>中间栏需要加左右margin，防止中间栏高度超出内容向左右溢出</li>
+          <li>注意清除浮动</li>
+        </ul>
+        <div class="float-layout-container float">
+          <div class="left">
+            <pre>.left {</pre>
+            <pre>  float: left;</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="right">
+            <pre>.right {</pre>
+            <pre>  float: right;</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="center">
+            <pre>.center {</pre>
+            <pre>  margin-left: 200px;</pre>
+            <pre>  margin-right: 200px;</pre>
+            <pre>}</pre>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>2. 绝对定位布局</h3>
+        <div class="float-layout-container absolute">
+          <div class="left">
+            <pre>.left {</pre>
+            <pre>  position: absolute;</pre>
+            <pre>  left: 0;</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="center">
+            <pre>.center {</pre>
+            <pre>  position: absolute;</pre>
+            <pre>  left: 200px;</pre>
+            <pre>  right: 200px;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="right">
+            <pre>.right {</pre>
+            <pre>  position: absolute;</pre>
+            <pre>  right: 0;</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>3. flex布局</h3>
+        <p>父元素样式：</p>
+        <pre>.flex-layout {</pre>
+        <pre>  display: flex;</pre>
+        <pre>}</pre>
+        <div class="float-layout-container flex-layout">
+          <div class="left">
+            <pre>.left {</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="center">
+            <pre>.center {</pre>
+            <pre>  flex: 1;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="right">
+            <pre>.right {</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>4. grid布局</h3>
+        <p>父元素样式：</p>
+        <pre>.grid-layout {</pre>
+        <pre>  display: grid;</pre>
+        <pre>  grid-template-columns: 200px auto 200px;</pre>
+        <pre>}</pre>
+        <div class="float-layout-container grid-layout">
+          <div class="left"></div>
+          <div class="center"></div>
+          <div class="right"></div>
+        </div>
+      </section>
+      <section>
+        <h3>5. table布局</h3>
+        <i>不推荐使用table做布局</i>
+        <p>父元素样式</p>
+        <pre>.table-layout {</pre>
+        <pre>  display: table;</pre>
+        <pre>  width: 100%;</pre>
+        <pre>}</pre>
+        <div class="float-layout-container table-layout">
+          <div class="left">
+            <pre>.table-layout .left {</pre>
+            <pre>  display: table-cell;</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="center">
+            <pre>.table-layout .center {</pre>
+            <pre>  display: table-cell;</pre>
+            <pre>}</pre>
+          </div>
+          <div class="right">
+            <pre>.table-layout .right {</pre>
+            <pre>  display: table-cell;</pre>
+            <pre>  width: 200px;</pre>
+            <pre>}</pre>
+          </div>
+        </div>
+      </section>
+    </article>
+  </body>
+</html>

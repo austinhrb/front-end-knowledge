@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .pseudo-element-class {
+      width: 200px;
+      height: 200px;
+      background-color: antiquewhite;
+    }
+    .pseudo-element-class::after {
+      content: '::after';
+      font-size: 16px;
+    }
+  </style>
+
+  <script>
+    let div = document.querySelector('.pseudo-element-class')
+    console.log(div)
+    console.log(window.getComputedStyle(div, '::after'))
+  </script>
+</head>
+<body>
+  <article>
+    <h1>如何获取、修改伪元素的属性</h1>
+    <p>以::after为例</p>
+    <div class="pseudo-element-class">
+
+    </div>
+    <section>
+      <h2>Window.getComputedStyle()</h2>
+      <i>*只能获取属性</i>
+    </section>
+  </article>
+</body>
+</html>

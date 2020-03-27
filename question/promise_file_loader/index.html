@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      nav > span {
+        display: inline-block;
+        border: 1px solid #ccc;
+        padding: 0 10px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .content {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #ccc;
+      }
+    </style>
+    <script>
+      function handleClick(id) {
+        fileLoader([`tab${id}/tab${id}.js`, `tab${id}/tab${id}.css`]);
+      }
+      function fileLoader(arr) {
+        let len = arr.length;
+        let rest = new Array(len).fill({});
+        for (let i = 0; i < arr.length; i++) {
+          const fileSrc = arr[i];
+          new Promise((resolve, reject) => {
+            let file = "";
+            if (fileSrc.endsWith("js")) {
+              file = document.createElement("script");
+              file.src = fileSrc;
+            } else if (fileSrc.endsWith("css")) {
+              file = document.createElement("link");
+              file.rel = "stylesheet";
+              file.href = fileSrc;
+            }
+            file.onload = function() {
+              resolve();
+            };
+            file.onerror = function(error) {
+              reject(error);
+            };
+            document.head.appendChild(file);
+          })
+            .then(() => {
+              rest[i].status = "fulfilled";
+            })
+            .catch(error => {
+              rest[i].status = "rejected";
+              rest[i].reason = error;
+            });
+        }
+        return rest;
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <span onclick="handleClick(1)">tab1</span>
+      <span onclick="handleClick(2)">tab2</span>
+      <span onclick="handleClick(3)">tab3</span>
+    </nav>
+    <div class="content">
+      <span
+        >这个区域会根据tab的切换展示不同的内容，可以打开控制台进行观察。</span
+      >
+    </div>
+  </body>
+</html>

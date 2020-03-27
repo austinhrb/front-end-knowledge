@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <article>
+      <h3>
+        reduce()
+        方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
+      </h3>
+      <div>
+        <p>reducer 函数接收4个参数:</p>
+        <ol>
+          <li>Accumulator (acc) (累计器)</li>
+          <li>rrent Value (cur) (当前值)</li>
+          <li>Current Index (idx) (当前索引)</li>
+          <li>Source Array (src) (源数组)</li>
+        </ol>
+        <p>通俗来讲，</p>
+        <h3 id="语法">语法</h3>
+        <pre><var>arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])</var></pre>
+        <h3 id="参数">参数</h3>
+        <dl>
+          <dt><code>callback</code></dt>
+          <dd>
+            执行数组中每个值&nbsp;(如果没有提供&nbsp;<code>initialValue则第一个值除外</code>)的函数，包含四个参数：
+          </dd>
+          <dd>
+            <dl></dl>
+            <strong><code>accumulator</code></strong>
+
+            <dl>
+              <dd>
+                <p>
+                  累计器累计回调的返回值;
+                  它是上一次调用回调时返回的累积值，或<code>initialValue</code>（见于下方）。
+                </p>
+              </dd>
+              <dt><code>currentValue</code></dt>
+              <dd>数组中正在处理的元素。</dd>
+              <dt>
+                <code>index</code>&nbsp;<span
+                  class="inlineIndicator optional optionalInline"
+                  >可选</span
+                >
+              </dt>
+              <dd>
+                数组中正在处理的当前元素的索引。
+                如果提供了<code>initialValue</code>，则起始索引号为0，否则从索引1起始。
+              </dd>
+              <dt>
+                <code>array</code
+                ><span class="inlineIndicator optional optionalInline"
+                  >可选</span
+                >
+              </dt>
+              <dd>调用<code>reduce()</code>的数组</dd>
+            </dl>
+          </dd>
+          <dt>
+            <code>initialValue</code
+            ><span class="inlineIndicator optional optionalInline">可选</span>
+          </dt>
+          <dd>
+            作为第一次调用&nbsp;<code>callback</code>函数时的第一个参数的值。
+            如果没有提供初始值，则将使用数组中的第一个元素。
+            在没有初始值的空数组上调用 reduce 将报错。
+          </dd>
+        </dl>
+      </div>
+    </article>
+  </body>
+</html>
